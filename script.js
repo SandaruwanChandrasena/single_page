@@ -1,24 +1,22 @@
 // 1. SELECT ELEMENTS
-// getElementById finds an element by its id in the HTML.
 const countEl = document.getElementById("count");
 const addBtn = document.getElementById("addBtn");
 const subtractBtn = document.getElementById("subtractBtn");
 const resetBtn = document.getElementById("resetBtn");
 
 // 2. STATE
-// This variable holds the current number.
 let count = 0;
 
 // 3. UPDATE THE SCREEN
 function updateDisplay() {
-  // Show the number
+
   countEl.textContent = count;
 
-  // Change color: blue above 0, red below 0
+
   countEl.classList.toggle("positive", count > 0);
   countEl.classList.toggle("negative", count < 0);
 
-  // Replay the "pop" animation
+
   countEl.classList.remove("pop");
   void countEl.offsetWidth; // small trick to restart the animation
   countEl.classList.add("pop");
@@ -31,20 +29,17 @@ function vibrate() {
   }
 }
 
-// Go full screen on the first tap.
 // Browsers only allow full screen after the user taps something.
 function goFullscreen() {
   const page = document.documentElement;
   if (!document.fullscreenElement && page.requestFullscreen) {
     page.requestFullscreen().catch(function () {
-      // Some browsers (like iPhone Safari) do not allow it. That is okay.
     });
   }
 }
 document.addEventListener("click", goFullscreen, { once: true });
 
 // 4. HANDLE CLICKS
-// addEventListener runs a function when the button is clicked.
 addBtn.addEventListener("click", function () {
   count = count + 1;
   updateDisplay();
