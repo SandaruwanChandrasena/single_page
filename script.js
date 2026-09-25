@@ -31,6 +31,18 @@ function vibrate() {
   }
 }
 
+// Go full screen on the first tap.
+// Browsers only allow full screen after the user taps something.
+function goFullscreen() {
+  const page = document.documentElement;
+  if (!document.fullscreenElement && page.requestFullscreen) {
+    page.requestFullscreen().catch(function () {
+      // Some browsers (like iPhone Safari) do not allow it. That is okay.
+    });
+  }
+}
+document.addEventListener("click", goFullscreen, { once: true });
+
 // 4. HANDLE CLICKS
 // addEventListener runs a function when the button is clicked.
 addBtn.addEventListener("click", function () {
